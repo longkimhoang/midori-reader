@@ -11,6 +11,8 @@
 		4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F31331C2A193A2D00CF5567 /* ContentView.swift */; };
 		4F31331F2A193A2E00CF5567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F31331E2A193A2E00CF5567 /* Assets.xcassets */; };
 		4F3133232A193A2E00CF5567 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */; };
+		4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD86C7B2A19C22400891002 /* LoginView.swift */; };
+		4FD86C7F2A19F47200891002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD86C7D2A19F47200891002 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		4F31331E2A193A2E00CF5567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MidoriReader.entitlements; sourceTree = "<group>"; };
 		4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4FD86C7B2A19C22400891002 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4FD86C7E2A19F47200891002 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +56,12 @@
 		4F3133192A193A2D00CF5567 /* MidoriReader */ = {
 			isa = PBXGroup;
 			children = (
-				4F31331A2A193A2D00CF5567 /* MidoriReaderApp.swift */,
-				4F31331C2A193A2D00CF5567 /* ContentView.swift */,
-				4F31331E2A193A2E00CF5567 /* Assets.xcassets */,
 				4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */,
+				4F31331C2A193A2D00CF5567 /* ContentView.swift */,
+				4F31331A2A193A2D00CF5567 /* MidoriReaderApp.swift */,
+				4F31331E2A193A2E00CF5567 /* Assets.xcassets */,
+				4FD86C7D2A19F47200891002 /* Localizable.strings */,
+				4FD86C7A2A19C21400891002 /* Login */,
 				4F3133212A193A2E00CF5567 /* Preview Content */,
 			);
 			path = MidoriReader;
@@ -67,6 +73,14 @@
 				4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4FD86C7A2A19C21400891002 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4FD86C7B2A19C22400891002 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +125,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = 4F31330E2A193A2D00CF5567;
 			productRefGroup = 4F3133182A193A2D00CF5567 /* Products */;
@@ -128,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3133232A193A2E00CF5567 /* Preview Assets.xcassets in Resources */,
+				4FD86C7F2A19F47200891002 /* Localizable.strings in Resources */,
 				4F31331F2A193A2E00CF5567 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,12 +155,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */,
 				4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */,
 				4F31331B2A193A2D00CF5567 /* MidoriReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4FD86C7D2A19F47200891002 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FD86C7E2A19F47200891002 /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4F3133242A193A2E00CF5567 /* Debug */ = {
