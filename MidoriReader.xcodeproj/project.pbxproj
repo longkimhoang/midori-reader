@@ -11,6 +11,9 @@
 		4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F31331C2A193A2D00CF5567 /* ContentView.swift */; };
 		4F31331F2A193A2E00CF5567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F31331E2A193A2E00CF5567 /* Assets.xcassets */; };
 		4F3133232A193A2E00CF5567 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */; };
+		4F4C680C2A1A78D5001930E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4C680B2A1A78D5001930E4 /* LoginController.swift */; };
+		4F5D3ED62A1DE72E005DEC19 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */; };
+		4F5D3ED92A1F1695005DEC19 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED82A1F1695005DEC19 /* Constants.swift */; };
 		4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD86C7B2A19C22400891002 /* LoginView.swift */; };
 		4FD86C7F2A19F47200891002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD86C7D2A19F47200891002 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -22,6 +25,9 @@
 		4F31331E2A193A2E00CF5567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MidoriReader.entitlements; sourceTree = "<group>"; };
 		4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4F4C680B2A1A78D5001930E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		4F5D3ED82A1F1695005DEC19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FD86C7B2A19C22400891002 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4FD86C7E2A19F47200891002 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +69,7 @@
 				4FD86C7D2A19F47200891002 /* Localizable.strings */,
 				4FD86C7A2A19C21400891002 /* Login */,
 				4F3133212A193A2E00CF5567 /* Preview Content */,
+				4F5D3ED72A1F1680005DEC19 /* Shared */,
 			);
 			path = MidoriReader;
 			sourceTree = "<group>";
@@ -75,9 +82,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		4F5D3ED72A1F1680005DEC19 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4F5D3ED82A1F1695005DEC19 /* Constants.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		4FD86C7A2A19C21400891002 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				4F4C680B2A1A78D5001930E4 /* LoginController.swift */,
+				4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */,
 				4FD86C7B2A19C22400891002 /* LoginView.swift */,
 			);
 			path = Login;
@@ -156,8 +173,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */,
+				4F4C680C2A1A78D5001930E4 /* LoginController.swift in Sources */,
 				4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */,
+				4F5D3ED92A1F1695005DEC19 /* Constants.swift in Sources */,
 				4F31331B2A193A2D00CF5567 /* MidoriReaderApp.swift in Sources */,
+				4F5D3ED62A1DE72E005DEC19 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +318,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Midori;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -316,7 +337,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.longkimhoang.MidoriReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -337,6 +360,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Midori;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -355,7 +379,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.longkimhoang.MidoriReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

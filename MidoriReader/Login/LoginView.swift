@@ -7,128 +7,97 @@
 
 import SwiftUI
 
-struct LoginCredential {
-  var username = ""
-  var password = ""
-  
-  var isValid: Bool {
-    !username.isEmpty && !password.isEmpty
-  }
-}
-
 struct LoginView: View {
   
-  @State private var credential = LoginCredential()
-  @State private var rememberLogin: Bool = false
-  @State private var loading: Bool = false
+  enum Field: Int {
+    case username, password
+  }
   
-  @Environment(\.openURL) var openURL
+  @State private var credential = LoginCredential()
+  @State private var loginError: LoginError?
+  @State private var showAlert = false
+  
+  @FocusState private var focusedField: Field?
+  @AccessibilityFocusState private var loadingFocused: Bool
+  
+  @ObservedObject var loginController: LoginController
+  
+  init(controller: LoginController = .shared) {
+    self.loginController = controller
+  }
   
   var body: some View {
-    let prompt = Text("Required")
-    
     Form {
       Section {
-        TextField("Username", text: $credential.username, prompt: prompt)
-          .textContentType(.username)
-        
-        SecureField("Password", text: $credential.password, prompt: prompt)
-          .textContentType(.password)
-        
-        Toggle("Remember login", isOn: $rememberLogin)
-      } footer: {
-#if os(macOS)
-        registerHelperText
-#endif
-      }
-    }
-    .safeAreaInset(edge: .bottom, alignment: .trailing) {
-#if os(macOS)
-      HStack {
-        if loading {
-          ProgressView()
-            .controlSize(.small)
-            .padding(.trailing, 2)
-        }
-        registerButton
-        loginButton
-      }
-#else
-      VStack {
-        loginButton
-        registerButton
-        registerHelperText
-          .font(.footnote)
+        Text("Midori")
+          .font(.largeTitle)
+          .fontDesign(.serif)
           .multilineTextAlignment(.center)
-          .padding(.top, 4)
+          .frame(maxWidth: .infinity)
       }
-      .padding()
-      .background(.background)
-      .controlSize(.large)
-#endif
+      .listRowBackground(Color.clear)
+      
+      Section {
+        TextField("Username", text: $credential.username)
+          .textContentType(.username)
+          .textInputAutocapitalization(.never)
+          .focused($focusedField, equals: .username)
+        
+        SecureField("Password", text: $credential.password)
+          .textContentType(.password)
+          .focused($focusedField, equals: .password)
+      }
+      
+      Section {
+        Button("Login", action: performLogin)
+          .disabled(!credential.isValid)
+        
+        Link("Register", destination: URL(string: "https://mangadex.org")!)
+      } footer: {
+        Text("Choose \"Register\" to create an account on the MangaDex website.")
+      }
     }
-#if os(macOS)
-    .padding()
-#endif
-    .navigationTitle("Login")
+    .disabled(loginController.isLoggingIn)
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbarBackground(.hidden, for: .navigationBar)
     .toolbar {
-#if os(iOS)
-      if loading {
-        ToolbarItem(placement: .automatic) {
-          ProgressView()
-            .controlSize(.regular)
-        }
+      ToolbarItem {
+        ProgressView()
+          .opacity(loginController.isLoggingIn ? 1 : 0)
+          .animation(.default, value: loginController.isLoggingIn)
+          .accessibilityFocused($loadingFocused)
       }
-#endif
     }
-    .disabled(loading)
+    .onSubmit {
+      guard credential.isValid else { return }
+      
+      performLogin()
+    }
+    .onChange(of: loginController.isLoggingIn) {
+      loadingFocused = $0
+    }
+    .alert(isPresented: $showAlert, error: loginError) {}
+    .scrollBounceBehavior(.basedOnSize)
   }
   
-  var loginButton: some View {
-    Button {
-      loading.toggle()
-    } label: {
-      Text("Login")
-#if os(iOS)
-        .frame(maxWidth: .infinity)
-#endif
-    }
-    .disabled(!credential.isValid)
-    .buttonStyle(.borderedProminent)
-  }
-  
-  var registerButton: some View {
-    Button {
-      if let url = URL(string: "https://mangadex.org") {
-        openURL(url)
+  func performLogin() {
+    Task {
+      do {
+        try await loginController.performLogin(with: credential)
+      } catch let error as LoginError {
+        loginError = error
+        showAlert = true
+      } catch {
+        fatalError("Unhandled error: \(error.localizedDescription)")
       }
-    } label: {
-      Text("Register")
-#if os(iOS)
-        .frame(maxWidth: .infinity)
-#endif
     }
-    .buttonStyle(.bordered)
-    .accessibilityHint("Create an account on the MangaDex website")
-  }
-  
-  @ViewBuilder
-  var registerHelperText: some View {
-    let message: LocalizedStringKey =
-    """
-    Choose "Register" to create an account on the MangaDex website.
-    """
-    
-    Text(message)
-      .foregroundColor(.secondary)
-      .accessibilityHidden(true)
   }
 }
 
 struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      LoginView()
+      LoginView(controller: .preview)
     }
   }
 }
