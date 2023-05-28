@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginResponse: Decodable {
+struct LoginResponse: Codable {
   let accessToken: String
   let refreshToken: String
   
@@ -31,5 +31,11 @@ struct LoginResponse: Decodable {
     let tokenContainer = try container.nestedContainer(keyedBy: TokenCodingKeys.self, forKey: .token)
     accessToken = try tokenContainer.decode(String.self, forKey: .session)
     refreshToken = try tokenContainer.decode(String.self, forKey: .refresh)
+  }
+  
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: TokenCodingKeys.self)
+    try container.encode(accessToken, forKey: .session)
+    try container.encode(refreshToken, forKey: .refresh)
   }
 }

@@ -14,6 +14,7 @@ struct LoginView: View {
   }
   
   @State private var credential = LoginCredential()
+  @State private var storeCredentialsInKeychain = false
   @State private var loginError: LoginError?
   @State private var showAlert = false
   
@@ -49,12 +50,23 @@ struct LoginView: View {
       }
       
       Section {
+        Toggle("Store credentials in Keychain", isOn: $storeCredentialsInKeychain)
+      } footer: {
+        Text("If credentials are found in the Keychain on the next login attempt, they would populate the login form.")
+      }
+      
+      Section {
         Button("Login", action: performLogin)
           .disabled(!credential.isValid)
         
         Link("Register", destination: URL(string: "https://mangadex.org")!)
       } footer: {
         Text("Choose \"Register\" to create an account on the MangaDex website.")
+      }
+    }
+    .task {
+      if let credential = await loginController.retrieveStoredCredential() {
+        self.credential = credential
       }
     }
     .disabled(loginController.isLoggingIn)
@@ -83,7 +95,10 @@ struct LoginView: View {
   func performLogin() {
     Task {
       do {
-        try await loginController.performLogin(with: credential)
+        try await loginController.performLogin(
+          with: credential,
+          storeCredentialsOnSuccess: storeCredentialsInKeychain
+        )
       } catch let error as LoginError {
         loginError = error
         showAlert = true
