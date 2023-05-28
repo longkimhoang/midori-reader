@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct LoginView: View {
-  
+
   enum Field: Int {
     case username, password
   }
-  
+
   @State private var credential = LoginCredential()
   @State private var storeCredentialsInKeychain = false
   @State private var loginError: LoginError?
   @State private var showAlert = false
-  
+
   @FocusState private var focusedField: Field?
   @AccessibilityFocusState private var loadingFocused: Bool
-  
+
   @ObservedObject var loginController: LoginController
-  
+
   init(controller: LoginController = .shared) {
     self.loginController = controller
   }
-  
+
   var body: some View {
     Form {
       Section {
@@ -37,28 +37,28 @@ struct LoginView: View {
           .frame(maxWidth: .infinity)
       }
       .listRowBackground(Color.clear)
-      
+
       Section {
         TextField("Username", text: $credential.username)
           .textContentType(.username)
           .textInputAutocapitalization(.never)
           .focused($focusedField, equals: .username)
-        
+
         SecureField("Password", text: $credential.password)
           .textContentType(.password)
           .focused($focusedField, equals: .password)
       }
-      
+
       Section {
         Toggle("Store credentials in Keychain", isOn: $storeCredentialsInKeychain)
       } footer: {
         Text("If credentials are found in the Keychain on the next login attempt, they would populate the login form.")
       }
-      
+
       Section {
         Button("Login", action: performLogin)
           .disabled(!credential.isValid)
-        
+
         Link("Register", destination: URL(string: "https://mangadex.org")!)
       } footer: {
         Text("Choose \"Register\" to create an account on the MangaDex website.")
@@ -82,7 +82,7 @@ struct LoginView: View {
     }
     .onSubmit {
       guard credential.isValid else { return }
-      
+
       performLogin()
     }
     .onChange(of: loginController.isLoggingIn) {
@@ -91,7 +91,7 @@ struct LoginView: View {
     .alert(isPresented: $showAlert, error: loginError) {}
     .scrollBounceBehavior(.basedOnSize)
   }
-  
+
   func performLogin() {
     Task {
       do {

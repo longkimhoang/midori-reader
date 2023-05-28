@@ -90,6 +90,7 @@ class LoginController: ObservableObject {
       kSecClass as String: kSecClassInternetPassword,
       kSecAttrLabel as String: StoreKeys.password,
       kSecValueData as String: credential.password.data(using: .utf8)!,
+      kSecAttrSynchronizable as String: true,
     ]
 
     let status = SecItemAdd(addQuery as CFDictionary, nil)
@@ -103,6 +104,7 @@ class LoginController: ObservableObject {
   func retrieveStoredCredential() async -> Credential? {
     // Get username
     guard let username = UserDefaults.standard.string(forKey: StoreKeys.username) else {
+      
       return nil
     }
 
