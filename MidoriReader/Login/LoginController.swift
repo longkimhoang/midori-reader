@@ -86,46 +86,41 @@ class LoginController: ObservableObject {
     UserDefaults.standard.set(credential.username, forKey: StoreKeys.username)
 
     // Store password in the Keychain
-    let addQuery: [String: Any] = [
-      kSecClass as String: kSecClassInternetPassword,
-      kSecAttrLabel as String: StoreKeys.password,
-      kSecAttrAccount as String: credential.username,
-      kSecValueData as String: credential.password.data(using: .utf8)!,
-      kSecAttrSynchronizable as String: true,
-    ]
+    var addQuery = keychainQuery(for: credential.username)
+    addQuery[kSecValueData as String] = credential.password.data(using: .utf8)!
 
     let status = SecItemAdd(addQuery as CFDictionary, nil)
     if status != errSecSuccess, let errorMessage = SecCopyErrorMessageString(status, nil) as String?
     {
       // These errors are non-critical to the login flow so we can just report it and move on.
       logger.warning("Cannot save credential to keychain: \(errorMessage)")
+    } else {
+      logger.info("Stored password for username \(credential.username, privacy: .private(mask: .hash))")
     }
   }
 
   func retrieveStoredCredential() async -> Credential? {
     // Get username
     guard let username = UserDefaults.standard.string(forKey: StoreKeys.username) else {
-
       return nil
     }
 
     let retrievePasswordTask: Task<String?, Never> = Task {
       // Get password from Keychain
-      let retrieveQuery: [String: Any] = [
-        kSecClass as String: kSecClassInternetPassword,
-        kSecAttrLabel as String: StoreKeys.password,
-        kSecAttrAccount as String: username,
-        kSecReturnData as String: true,
-      ]
+      var retrieveQuery = keychainQuery(for: username)
+      retrieveQuery[kSecReturnData as String] = true
 
       var result: CFTypeRef?
       let status = SecItemCopyMatching(retrieveQuery as CFDictionary, &result)
-      guard status != errSecItemNotFound else { return nil }
+      guard status != errSecItemNotFound else {
+        logger.info("No password found for username \(username, privacy: .private(mask: .hash))")
+        return nil
+      }
       guard status == errSecSuccess, let passwordData = result as? Data,
         let password = String(data: passwordData, encoding: .utf8)
       else {
         if let errorMessage = SecCopyErrorMessageString(status, nil) as String? {
-          logger.warning("Cannot save credential to keychain: \(errorMessage)")
+          logger.warning("Cannot restore credential from keychain: \(errorMessage)")
         }
         return nil
       }
@@ -135,6 +130,15 @@ class LoginController: ObservableObject {
 
     guard let password = await retrievePasswordTask.value else { return nil }
     return Credential(username: username, password: password)
+  }
+  
+  private func keychainQuery(for username: String) -> [String: Any] {
+    return [
+      kSecClass as String: kSecClassGenericPassword,
+      kSecAttrLabel as String: StoreKeys.password,
+      kSecAttrAccount as String: username,
+      kSecAttrSynchronizable as String: true
+    ]
   }
 }
 

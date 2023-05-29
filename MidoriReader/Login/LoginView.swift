@@ -68,7 +68,6 @@ struct LoginView: View {
         Text("Choose \"Register\" to create an account on the MangaDex website.")
       }
     }
-    .padding()
     .task {
       if let credential = await loginController.retrieveStoredCredential() {
         self.credential = credential
