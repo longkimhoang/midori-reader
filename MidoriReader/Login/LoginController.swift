@@ -37,15 +37,15 @@ class LoginController: ObservableObject {
   }
 
   enum StoreKeys {
-    static let username = "\(Bundle.main.bundleIdentifier!).login.username"
-    static let password = "\(Bundle.main.bundleIdentifier!).login.password"
+    static let username = "\(Constants.bundleIdentifier).login.username"
+    static let password = "\(Constants.bundleIdentifier).login.password"
   }
 
   static let shared = LoginController()
 
   private let encoder = JSONEncoder()
   private let decoder = JSONDecoder()
-  private let logger = Logger(subsystem: Bundle.main.bundleURL.absoluteString, category: "Auth")
+  private let logger = Logger(subsystem: Constants.bundleIdentifier, category: "Auth")
 
   @Published var isLoggingIn: Bool = false
 
@@ -89,6 +89,7 @@ class LoginController: ObservableObject {
     let addQuery: [String: Any] = [
       kSecClass as String: kSecClassInternetPassword,
       kSecAttrLabel as String: StoreKeys.password,
+      kSecAttrAccount as String: credential.username,
       kSecValueData as String: credential.password.data(using: .utf8)!,
       kSecAttrSynchronizable as String: true,
     ]
@@ -104,7 +105,7 @@ class LoginController: ObservableObject {
   func retrieveStoredCredential() async -> Credential? {
     // Get username
     guard let username = UserDefaults.standard.string(forKey: StoreKeys.username) else {
-      
+
       return nil
     }
 
@@ -113,6 +114,7 @@ class LoginController: ObservableObject {
       let retrieveQuery: [String: Any] = [
         kSecClass as String: kSecClassInternetPassword,
         kSecAttrLabel as String: StoreKeys.password,
+        kSecAttrAccount as String: username,
         kSecReturnData as String: true,
       ]
 

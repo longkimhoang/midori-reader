@@ -11,11 +11,13 @@
 		4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F31331C2A193A2D00CF5567 /* ContentView.swift */; };
 		4F31331F2A193A2E00CF5567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F31331E2A193A2E00CF5567 /* Assets.xcassets */; };
 		4F3133232A193A2E00CF5567 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */; };
+		4F37C04D2A244BC800D9922C /* .swift-format in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C04C2A244BC800D9922C /* .swift-format */; };
+		4F37C0502A244DBA00D9922C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C04E2A244DBA00D9922C /* Localizable.strings */; };
+		4F37C0532A244DBA00D9922C /* MidoriReader-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C0512A244DBA00D9922C /* MidoriReader-InfoPlist.strings */; };
 		4F4C680C2A1A78D5001930E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4C680B2A1A78D5001930E4 /* LoginController.swift */; };
 		4F5D3ED62A1DE72E005DEC19 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */; };
 		4F5D3ED92A1F1695005DEC19 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED82A1F1695005DEC19 /* Constants.swift */; };
 		4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD86C7B2A19C22400891002 /* LoginView.swift */; };
-		4FD86C7F2A19F47200891002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD86C7D2A19F47200891002 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,11 +27,13 @@
 		4F31331E2A193A2E00CF5567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MidoriReader.entitlements; sourceTree = "<group>"; };
 		4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4F37C04C2A244BC800D9922C /* .swift-format */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-format"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		4F37C04F2A244DBA00D9922C /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F37C0522A244DBA00D9922C /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = "vi.lproj/MidoriReader-InfoPlist.strings"; sourceTree = "<group>"; };
 		4F4C680B2A1A78D5001930E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		4F5D3ED82A1F1695005DEC19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FD86C7B2A19C22400891002 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		4FD86C7E2A19F47200891002 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +51,9 @@
 			isa = PBXGroup;
 			children = (
 				4F3133192A193A2D00CF5567 /* MidoriReader */,
+				4F37C0512A244DBA00D9922C /* MidoriReader-InfoPlist.strings */,
 				4F3133182A193A2D00CF5567 /* Products */,
+				4F37C04B2A244BB600D9922C /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,11 +68,11 @@
 		4F3133192A193A2D00CF5567 /* MidoriReader */ = {
 			isa = PBXGroup;
 			children = (
+				4F37C04E2A244DBA00D9922C /* Localizable.strings */,
 				4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */,
 				4F31331C2A193A2D00CF5567 /* ContentView.swift */,
 				4F31331A2A193A2D00CF5567 /* MidoriReaderApp.swift */,
 				4F31331E2A193A2E00CF5567 /* Assets.xcassets */,
-				4FD86C7D2A19F47200891002 /* Localizable.strings */,
 				4FD86C7A2A19C21400891002 /* Login */,
 				4F3133212A193A2E00CF5567 /* Preview Content */,
 				4F5D3ED72A1F1680005DEC19 /* Shared */,
@@ -80,6 +86,14 @@
 				4F3133222A193A2E00CF5567 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4F37C04B2A244BB600D9922C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F37C04C2A244BC800D9922C /* .swift-format */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4F5D3ED72A1F1680005DEC19 /* Shared */ = {
@@ -160,7 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3133232A193A2E00CF5567 /* Preview Assets.xcassets in Resources */,
-				4FD86C7F2A19F47200891002 /* Localizable.strings in Resources */,
+				4F37C0502A244DBA00D9922C /* Localizable.strings in Resources */,
+				4F37C0532A244DBA00D9922C /* MidoriReader-InfoPlist.strings in Resources */,
+				4F37C04D2A244BC800D9922C /* .swift-format in Resources */,
 				4F31331F2A193A2E00CF5567 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,12 +200,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4FD86C7D2A19F47200891002 /* Localizable.strings */ = {
+		4F37C04E2A244DBA00D9922C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4FD86C7E2A19F47200891002 /* vi */,
+				4F37C04F2A244DBA00D9922C /* vi */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4F37C0512A244DBA00D9922C /* MidoriReader-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F37C0522A244DBA00D9922C /* vi */,
+			);
+			name = "MidoriReader-InfoPlist.strings";
+			path = MidoriReader;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -249,6 +274,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -300,6 +326,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -336,8 +363,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.longkimhoang.MidoriReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -377,8 +404,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.longkimhoang.MidoriReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

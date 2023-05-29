@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"Choose \"Register\" to create an account on the MangaDex website." = "Chọn \"Đăng ký\" để tạo tài khoản tại trang web MangaDex.";
+"Choose \"Register\" to create an account on the MangaDex website." = "Chọn \"Đăng ký\" để tạo tài khoản trên trang web MangaDex.";
 
 /* No comment provided by engineer. */
-"Create an account on the MangaDex website" = "Tạo tài khoản tại trang web MangaDex";
+"If a password is found in the Keychain on the next login attempt, it would be filled in." = "Nếu mật khẩu được tìm thấy trong Keychain trong lần đăng nhập tiếp theo, mật khẩu đó sẽ được điền vào.";
 
 /* No comment provided by engineer. */
 "Login" = "Đăng nhập";
@@ -14,14 +14,14 @@
 "Register" = "Đăng ký";
 
 /* No comment provided by engineer. */
-"Required" = "Bắt buộc";
+"Store password in Keychain" = "Lưu mật khẩu trong Keychain";
 
 /* No comment provided by engineer. */
-"Unknown error occured while trying to login (code = %lld)." = "Có lỗi xảy ra khi đăng nhập (code = %lld).";
+"Unknown error occured while trying to login (code = %lld)." = "Đã xảy ra lỗi không xác định khi đăng nhập (code = %lld).";
 
 /* No comment provided by engineer. */
 "Username" = "Tên đăng nhập";
 
 /* No comment provided by engineer. */
-"Username or password is incorrect." = "Tên đăng nhập hoặc mật khẩu không đúng.";
+"Username or password is incorrect." = "Tên đăng nhập hoặc mật khẩu không chính xác.";
 

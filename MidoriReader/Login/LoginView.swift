@@ -30,48 +30,55 @@ struct LoginView: View {
   var body: some View {
     Form {
       Section {
-        Text("Midori")
-          .font(.largeTitle)
-          .fontDesign(.serif)
-          .multilineTextAlignment(.center)
-          .frame(maxWidth: .infinity)
+        Text(verbatim: "Midori")
+        .font(.largeTitle)
+        .fontDesign(.serif)
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
       }
       .listRowBackground(Color.clear)
 
       Section {
         TextField("Username", text: $credential.username)
-          .textContentType(.username)
-          .textInputAutocapitalization(.never)
-          .focused($focusedField, equals: .username)
+        .textContentType(.username)
+        .focused($focusedField, equals: .username)
+        #if os(iOS)
+        .textInputAutocapitalization(.never)
+        #endif
 
         SecureField("Password", text: $credential.password)
-          .textContentType(.password)
-          .focused($focusedField, equals: .password)
+        .textContentType(.password)
+        .focused($focusedField, equals: .password)
       }
 
       Section {
-        Toggle("Store credentials in Keychain", isOn: $storeCredentialsInKeychain)
+        Toggle("Store password in Keychain", isOn: $storeCredentialsInKeychain)
       } footer: {
-        Text("If credentials are found in the Keychain on the next login attempt, they would populate the login form.")
+        Text(
+          "If a password is found in the Keychain on the next login attempt, it would be filled in."
+        )
       }
 
       Section {
         Button("Login", action: performLogin)
-          .disabled(!credential.isValid)
+        .disabled(!credential.isValid)
 
-        Link("Register", destination: URL(string: "https://mangadex.org")!)
+        Link("Register", destination: URLConstants.homepage)
       } footer: {
         Text("Choose \"Register\" to create an account on the MangaDex website.")
       }
     }
+    .padding()
     .task {
       if let credential = await loginController.retrieveStoredCredential() {
         self.credential = credential
       }
     }
     .disabled(loginController.isLoggingIn)
+    #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     .toolbarBackground(.hidden, for: .navigationBar)
+    #endif
     .toolbar {
       ToolbarItem {
         ProgressView()
