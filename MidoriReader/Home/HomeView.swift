@@ -22,6 +22,11 @@ struct HomeView: View {
         .tabItem {
           Label("Updates", systemImage: "newspaper")
         }
+      
+      Text("Library")
+        .tabItem {
+          Label("Library", systemImage: "books.vertical")
+        }
 
       Text("History")
         .tabItem {
