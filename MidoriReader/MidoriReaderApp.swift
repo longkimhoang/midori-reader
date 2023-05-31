@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct MidoriReaderApp: App {
   @StateObject private var authCoordinator = Container.shared.authCoordinator()
-  
+
   var body: some Scene {
     WindowGroup {
       ContentView()

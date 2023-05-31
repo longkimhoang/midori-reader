@@ -9,8 +9,8 @@ import Alamofire
 import Combine
 import Factory
 import Foundation
-import os.log
 import Security
+import os.log
 
 private let usernameDefaultsLabel = "login.username"
 private let passwordKeychainLabel = "login.password"
@@ -19,8 +19,7 @@ private let passwordKeychainLabel = "login.password"
 final class LoginViewModel: ObservableObject {
 
   typealias Credential = LoginCredential
-  
-  private let loginErrorSubject = PassthroughSubject<LoginError, Never>()
+
   private let logger = Logger(subsystem: Constants.bundleIdentifier, category: "Login")
 
   @Published var credential = Credential(username: "", password: "")
@@ -34,39 +33,40 @@ final class LoginViewModel: ObservableObject {
 
   func retrieveStoredCredential() async {
     var restoredCredential = Credential(username: "", password: "")
-    
+
     if let username = userDefaults.string(forKey: usernameDefaultsLabel) {
       restoredCredential.username = username
     }
-    
+
     if let password = await retrievePasswordFromKeychain() {
       restoredCredential.password = password
     }
-    
+
     credential = restoredCredential
   }
 
-  func login() async {
+  func login() async -> Result<Void, LoginError> {
     isLoggingIn = true
     defer { isLoggingIn = false }
-    
+
     let result = await performLogin(credential)
     switch result {
     case .success(let response):
       userDefaults.set(credential.username, forKey: usernameDefaultsLabel)
       let storePasswordResult = keychain.set(credential.password, forKey: passwordKeychainLabel)
-      if !storePasswordResult, let errorMessage = SecCopyErrorMessageString(keychain.lastResultCode, nil) as String? {
+      if !storePasswordResult,
+        let errorMessage = SecCopyErrorMessageString(keychain.lastResultCode, nil) as String?
+      {
         logger.warning("Cannot store password: \(errorMessage)")
       }
-      
+
       await tokenStore.store(accessToken: response.accessToken, refreshToken: response.refreshToken)
+      return .success(())
     case .failure(let error):
-      loginErrorSubject.send(error)
+      return .failure(error)
     }
   }
-  
-  var loginErrorPublisher: some Publisher<LoginError, Never> { loginErrorSubject }
-  
+
   @KeychainActor
   private func retrievePasswordFromKeychain() async -> String? {
     await keychain.get(passwordKeychainLabel)

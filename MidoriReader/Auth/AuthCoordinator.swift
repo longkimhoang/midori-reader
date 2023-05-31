@@ -23,7 +23,7 @@ final class AuthCoordinator: ObservableObject {
   @Published var currentState: AuthState = .notDetermined
 
   @Injected(\.tokenStore) var tokenStore
-  
+
   func retrieveInitialAuthState() async {
     setupSubscribers()
   }

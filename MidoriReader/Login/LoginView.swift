@@ -21,7 +21,7 @@ struct LoginView: View {
   @StateObject private var viewModel = Container.shared.loginViewModel()
   @FocusState private var focusedField: Field?
   @AccessibilityFocusState private var loadingFocused: Bool
-  
+
   @EnvironmentObject var authCoordinator: AuthCoordinator
 
   var body: some View {
@@ -68,10 +68,6 @@ struct LoginView: View {
     .task {
       await viewModel.retrieveStoredCredential()
     }
-    .onReceive(viewModel.loginErrorPublisher) {
-      loginError = $0
-      showAlert = true
-    }
     .disabled(viewModel.isLoggingIn)
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
@@ -99,8 +95,14 @@ struct LoginView: View {
 
   func performLogin() {
     Task {
-      await viewModel.login()
-      authCoordinator.didFinishLogin()
+      let result = await viewModel.login()
+      switch result {
+      case .success:
+        authCoordinator.didFinishLogin()
+      case .failure(let error):
+        loginError = error
+        showAlert = true
+      }
     }
   }
 }

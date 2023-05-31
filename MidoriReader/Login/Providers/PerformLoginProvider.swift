@@ -34,9 +34,11 @@ extension Container {
   var performLogin: Factory<PerformLogin> {
     self {
       { credential in
-        let dataTask = AF.request(apiLoginURL, method: .post, parameters: credential, encoder: .json)
-          .validate(statusCode: CollectionOfOne(200))
-          .serializingDecodable(LoginResponse.self)
+        let dataTask = AF.request(
+          apiLoginURL, method: .post, parameters: credential, encoder: .json
+        )
+        .validate(statusCode: CollectionOfOne(200))
+        .serializingDecodable(LoginResponse.self)
 
         return await dataTask.result
           .mapError { error in
