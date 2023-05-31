@@ -5,6 +5,8 @@
 //  Created by Kim Long on 21/05/2023.
 //
 
+import Combine
+import Factory
 import SwiftUI
 
 struct LoginView: View {
@@ -13,19 +15,14 @@ struct LoginView: View {
     case username, password
   }
 
-  @State private var credential = LoginCredential()
   @State private var storeCredentialsInKeychain = false
   @State private var loginError: LoginError?
   @State private var showAlert = false
-
+  @StateObject private var viewModel = Container.shared.loginViewModel()
   @FocusState private var focusedField: Field?
   @AccessibilityFocusState private var loadingFocused: Bool
-
-  @ObservedObject var loginController: LoginController
-
-  init(controller: LoginController = .shared) {
-    self.loginController = controller
-  }
+  
+  @EnvironmentObject var authCoordinator: AuthCoordinator
 
   var body: some View {
     Form {
@@ -39,20 +36,20 @@ struct LoginView: View {
       .listRowBackground(Color.clear)
 
       Section {
-        TextField("Username", text: $credential.username)
+        TextField("Username", text: $viewModel.credential.username)
         .textContentType(.username)
         .focused($focusedField, equals: .username)
         #if os(iOS)
         .textInputAutocapitalization(.never)
         #endif
 
-        SecureField("Password", text: $credential.password)
+        SecureField("Password", text: $viewModel.credential.password)
         .textContentType(.password)
         .focused($focusedField, equals: .password)
       }
 
       Section {
-        Toggle("Store password in Keychain", isOn: $storeCredentialsInKeychain)
+        Toggle("Store password in Keychain", isOn: $viewModel.storePasswordInKeychain)
       } footer: {
         Text(
           "If a password is found in the Keychain on the next login attempt, it would be filled in."
@@ -61,7 +58,7 @@ struct LoginView: View {
 
       Section {
         Button("Login", action: performLogin)
-        .disabled(!credential.isValid)
+        .disabled(!viewModel.credential.isValid)
 
         Link("Register", destination: URLConstants.homepage)
       } footer: {
@@ -69,11 +66,13 @@ struct LoginView: View {
       }
     }
     .task {
-      if let credential = await loginController.retrieveStoredCredential() {
-        self.credential = credential
-      }
+      await viewModel.retrieveStoredCredential()
     }
-    .disabled(loginController.isLoggingIn)
+    .onReceive(viewModel.loginErrorPublisher) {
+      loginError = $0
+      showAlert = true
+    }
+    .disabled(viewModel.isLoggingIn)
     #if os(iOS)
     .navigationBarTitleDisplayMode(.inline)
     .toolbarBackground(.hidden, for: .navigationBar)
@@ -81,17 +80,17 @@ struct LoginView: View {
     .toolbar {
       ToolbarItem {
         ProgressView()
-          .opacity(loginController.isLoggingIn ? 1 : 0)
-          .animation(.default, value: loginController.isLoggingIn)
+          .opacity(viewModel.isLoggingIn ? 1 : 0)
+          .animation(.default, value: viewModel.isLoggingIn)
           .accessibilityFocused($loadingFocused)
       }
     }
     .onSubmit {
-      guard credential.isValid else { return }
+      guard viewModel.credential.isValid else { return }
 
       performLogin()
     }
-    .onChange(of: loginController.isLoggingIn) {
+    .onChange(of: viewModel.isLoggingIn) {
       loadingFocused = $0
     }
     .alert(isPresented: $showAlert, error: loginError) {}
@@ -100,17 +99,8 @@ struct LoginView: View {
 
   func performLogin() {
     Task {
-      do {
-        try await loginController.performLogin(
-          with: credential,
-          storeCredentialsOnSuccess: storeCredentialsInKeychain
-        )
-      } catch let error as LoginError {
-        loginError = error
-        showAlert = true
-      } catch {
-        fatalError("Unhandled error: \(error.localizedDescription)")
-      }
+      await viewModel.login()
+      authCoordinator.didFinishLogin()
     }
   }
 }
@@ -118,7 +108,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      LoginView(controller: .preview)
+      LoginView()
     }
   }
 }

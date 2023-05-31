@@ -13,6 +13,6 @@ enum Constants {
 
 enum URLConstants {
   static let homepage = URL(string: "https://mangadex.org")!
-  
+
   static let api = URL(string: "https://api.mangadex.org/auth")!
 }

@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+  @EnvironmentObject var authCoordinator: AuthCoordinator
+  
   var body: some View {
     NavigationStack {
       LoginView()
+        .onChange(of: authCoordinator.currentState) { print($0) }
     }
   }
 }

@@ -14,7 +14,17 @@
 		4F37C04D2A244BC800D9922C /* .swift-format in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C04C2A244BC800D9922C /* .swift-format */; };
 		4F37C0502A244DBA00D9922C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C04E2A244DBA00D9922C /* Localizable.strings */; };
 		4F37C0532A244DBA00D9922C /* MidoriReader-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F37C0512A244DBA00D9922C /* MidoriReader-InfoPlist.strings */; };
-		4F4C680C2A1A78D5001930E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4C680B2A1A78D5001930E4 /* LoginController.swift */; };
+		4F37C0562A24819900D9922C /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C0552A24819900D9922C /* TokenStore.swift */; };
+		4F37C0592A248F1F00D9922C /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F37C0582A248F1F00D9922C /* KeychainSwift */; };
+		4F37C05C2A26017A00D9922C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 4F37C05B2A26017A00D9922C /* Factory */; };
+		4F37C05E2A26026700D9922C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C05D2A26026700D9922C /* LoginViewModel.swift */; };
+		4F37C0602A2609C100D9922C /* PerformLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C05F2A2609C100D9922C /* PerformLoginProvider.swift */; };
+		4F37C0632A260A1C00D9922C /* LoginCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C0622A260A1C00D9922C /* LoginCredential.swift */; };
+		4F37C0672A26131300D9922C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4F37C0662A26131300D9922C /* Alamofire */; };
+		4F37C0692A26EFF700D9922C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C0682A26EFF700D9922C /* Keychain.swift */; };
+		4F37C06B2A2709AF00D9922C /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C06A2A2709AF00D9922C /* UserDefaults.swift */; };
+		4F37C0702A271E0900D9922C /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C06F2A271E0900D9922C /* AuthCoordinator.swift */; };
+		4F37C0732A27733500D9922C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F37C0722A27733500D9922C /* HomeView.swift */; };
 		4F5D3ED62A1DE72E005DEC19 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */; };
 		4F5D3ED92A1F1695005DEC19 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3ED82A1F1695005DEC19 /* Constants.swift */; };
 		4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD86C7B2A19C22400891002 /* LoginView.swift */; };
@@ -30,7 +40,14 @@
 		4F37C04C2A244BC800D9922C /* .swift-format */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-format"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4F37C04F2A244DBA00D9922C /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F37C0522A244DBA00D9922C /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = "vi.lproj/MidoriReader-InfoPlist.strings"; sourceTree = "<group>"; };
-		4F4C680B2A1A78D5001930E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		4F37C0552A24819900D9922C /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		4F37C05D2A26026700D9922C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4F37C05F2A2609C100D9922C /* PerformLoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformLoginProvider.swift; sourceTree = "<group>"; };
+		4F37C0622A260A1C00D9922C /* LoginCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredential.swift; sourceTree = "<group>"; };
+		4F37C0682A26EFF700D9922C /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		4F37C06A2A2709AF00D9922C /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		4F37C06F2A271E0900D9922C /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		4F37C0722A27733500D9922C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		4F5D3ED82A1F1695005DEC19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4FD86C7B2A19C22400891002 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -41,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F37C0672A26131300D9922C /* Alamofire in Frameworks */,
+				4F37C0592A248F1F00D9922C /* KeychainSwift in Frameworks */,
+				4F37C05C2A26017A00D9922C /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,11 +88,13 @@
 		4F3133192A193A2D00CF5567 /* MidoriReader */ = {
 			isa = PBXGroup;
 			children = (
-				4F37C04E2A244DBA00D9922C /* Localizable.strings */,
 				4F3133202A193A2E00CF5567 /* MidoriReader.entitlements */,
 				4F31331C2A193A2D00CF5567 /* ContentView.swift */,
 				4F31331A2A193A2D00CF5567 /* MidoriReaderApp.swift */,
 				4F31331E2A193A2E00CF5567 /* Assets.xcassets */,
+				4F37C0542A24818E00D9922C /* Auth */,
+				4F37C0712A27731A00D9922C /* Home */,
+				4F37C04E2A244DBA00D9922C /* Localizable.strings */,
 				4FD86C7A2A19C21400891002 /* Login */,
 				4F3133212A193A2E00CF5567 /* Preview Content */,
 				4F5D3ED72A1F1680005DEC19 /* Shared */,
@@ -96,10 +118,46 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4F37C0542A24818E00D9922C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4F37C06F2A271E0900D9922C /* AuthCoordinator.swift */,
+				4F37C0552A24819900D9922C /* TokenStore.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		4F37C0612A260A1200D9922C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4F37C0622A260A1C00D9922C /* LoginCredential.swift */,
+				4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4F37C0642A26110500D9922C /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				4F37C05F2A2609C100D9922C /* PerformLoginProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		4F37C0712A27731A00D9922C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4F37C0722A27733500D9922C /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		4F5D3ED72A1F1680005DEC19 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				4F5D3ED82A1F1695005DEC19 /* Constants.swift */,
+				4F37C0682A26EFF700D9922C /* Keychain.swift */,
+				4F37C06A2A2709AF00D9922C /* UserDefaults.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -107,9 +165,10 @@
 		4FD86C7A2A19C21400891002 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				4F4C680B2A1A78D5001930E4 /* LoginController.swift */,
-				4F5D3ED52A1DE72E005DEC19 /* LoginResponse.swift */,
 				4FD86C7B2A19C22400891002 /* LoginView.swift */,
+				4F37C05D2A26026700D9922C /* LoginViewModel.swift */,
+				4F37C0612A260A1200D9922C /* Models */,
+				4F37C0642A26110500D9922C /* Providers */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -130,6 +189,11 @@
 			dependencies = (
 			);
 			name = MidoriReader;
+			packageProductDependencies = (
+				4F37C0582A248F1F00D9922C /* KeychainSwift */,
+				4F37C05B2A26017A00D9922C /* Factory */,
+				4F37C0662A26131300D9922C /* Alamofire */,
+			);
 			productName = MidoriReader;
 			productReference = 4F3133172A193A2D00CF5567 /* MidoriReader.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +223,11 @@
 				vi,
 			);
 			mainGroup = 4F31330E2A193A2D00CF5567;
+			packageReferences = (
+				4F37C0572A248F1E00D9922C /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				4F37C05A2A26017A00D9922C /* XCRemoteSwiftPackageReference "Factory" */,
+				4F37C0652A26131200D9922C /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 4F3133182A193A2D00CF5567 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,9 +257,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F37C0632A260A1C00D9922C /* LoginCredential.swift in Sources */,
 				4FD86C7C2A19C22400891002 /* LoginView.swift in Sources */,
-				4F4C680C2A1A78D5001930E4 /* LoginController.swift in Sources */,
+				4F37C0732A27733500D9922C /* HomeView.swift in Sources */,
+				4F37C0702A271E0900D9922C /* AuthCoordinator.swift in Sources */,
+				4F37C0562A24819900D9922C /* TokenStore.swift in Sources */,
 				4F31331D2A193A2D00CF5567 /* ContentView.swift in Sources */,
+				4F37C0692A26EFF700D9922C /* Keychain.swift in Sources */,
+				4F37C0602A2609C100D9922C /* PerformLoginProvider.swift in Sources */,
+				4F37C05E2A26026700D9922C /* LoginViewModel.swift in Sources */,
+				4F37C06B2A2709AF00D9922C /* UserDefaults.swift in Sources */,
 				4F5D3ED92A1F1695005DEC19 /* Constants.swift in Sources */,
 				4F31331B2A193A2D00CF5567 /* MidoriReaderApp.swift in Sources */,
 				4F5D3ED62A1DE72E005DEC19 /* LoginResponse.swift in Sources */,
@@ -435,6 +511,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F37C0572A248F1E00D9922C /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
+		4F37C05A2A26017A00D9922C /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		4F37C0652A26131200D9922C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F37C0582A248F1F00D9922C /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F37C0572A248F1E00D9922C /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		4F37C05B2A26017A00D9922C /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F37C05A2A26017A00D9922C /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		4F37C0662A26131300D9922C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F37C0652A26131200D9922C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4F31330F2A193A2D00CF5567 /* Project object */;
 }
